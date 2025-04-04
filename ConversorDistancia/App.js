@@ -1,8 +1,25 @@
+import {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native';
+
 
 export default function App() { 
-  const [metros, setMetros] = useState(0);
+  const [metros, setMetros] = useState(null);
+  const [km, setKm] = useState(null);
+  const [mensagem, setMensagem] = useState ('preencha os campos');
+  function calcularMetros() {
+    setKm (metros / 1000);
+  }
+
+  function mensagemMetros() {
+    if (metros != null)
+
+    {
+      calcularMetros ();
+      setMensagem ("Seu valor é:" );
+    }
+}
+    
   return (
     <View style={styles.container}>
       <View style={styles.titleArea}>
@@ -11,8 +28,21 @@ export default function App() {
         </Text>
       </View>
       <View style={styles.inputArea}>
-        <TextInput styles={styles.input} placeholder="Digite a distância em metros..."  keyboardType='numeric' />
 
+        <TextInput styles={styles.input} placeholder="Digite a distância em metros..."  keyboardType='numeric' onChangeText={setMetros} />
+        <TouchableOpacity styles ={styles.button} onPress ={mensagemMetros}>
+          <Text styles ={styles.textbutton}>
+            'Calcular'
+          </Text>  
+        </TouchableOpacity> 
+      </View>
+      <View styles = {styles.kmArea}>
+        <Text style = {styles.mensagem}>
+          {mensagem}
+        </Text>
+        <Text styles = {styles.km}>
+          {km}
+        </Text>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -56,4 +86,7 @@ const styles = StyleSheet.create({
   }
 
 
+
+
+  
 });
