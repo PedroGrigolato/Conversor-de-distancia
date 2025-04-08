@@ -6,7 +6,7 @@ import { StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from '
 export default function App() { 
   const [metros, setMetros] = useState(null);
   const [km, setKm] = useState(null);
-  const [mensagem, setMensagem] = useState ('preencha os campos');
+  const [mensagem, setMensagem] = useState (null);
   function calcularMetros() {
     setKm (metros / 1000);
   }
@@ -16,7 +16,7 @@ export default function App() {
 
     {
       calcularMetros ();
-      setMensagem ("Seu valor é:" );
+      setMensagem ("Seu valor em km é:" );
     }
 }
     
@@ -29,18 +29,18 @@ export default function App() {
       </View>
       <View style={styles.inputArea}>
 
-        <TextInput styles={styles.input} placeholder="Digite a distância em metros..."  keyboardType='numeric' onChangeText={setMetros} />
-        <TouchableOpacity styles ={styles.button} onPress ={mensagemMetros}>
-          <Text styles ={styles.textbutton}>
-            'Calcular'
+        <TextInput style={styles.input} placeholder="Digite a distância em metros..."  keyboardType='numeric' onChangeText={setMetros} />
+        <TouchableOpacity style={styles.button} onPress ={mensagemMetros}>
+          <Text style ={styles.textbutton}>
+            Calcular
           </Text>  
         </TouchableOpacity> 
       </View>
-      <View styles = {styles.kmArea}>
+      <View style = {styles.kmArea}>
         <Text style = {styles.mensagem}>
           {mensagem}
         </Text>
-        <Text styles = {styles.km}>
+        <Text style = {styles.km}>
           {km}
         </Text>
       </View>
@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
   inputArea:{
     alignSelf: 'center',
     margintop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 5,
+    width: '100%',
+   
   },
 
   input:{
@@ -83,10 +88,21 @@ const styles = StyleSheet.create({
     width: '70%',
     fontSize: 10,
     borderRadius: 6,
+    marginTop: 35,
+    paddingHorizontal: '15%',
+  },
+
+  button:{
+    borderWidth: 3,
+    borderColor: '#0000',
+    backgroundColor: '#f2c4',
+   
+   
+  },
+
+  kmArea:{
+    justifyContent: 'center',
+    alignItems: 'center',            
   }
 
-
-
-
-  
 });
